@@ -1,4 +1,7 @@
 package core
-type Event interface {
+type Event struct{
 
+}
+type IEvent interface {
+	GetEventName()
 }

@@ -1,5 +1,10 @@
 package main
 
-type MyEvent struct {
-	code string
+type EventNode struct {
+	Code string
 }
+
+func (e EventNode) GetEventName() {
+	panic("implement me")
+}
+

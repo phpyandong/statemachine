@@ -6,11 +6,11 @@ type AttributionState struct {
 	Name	 string
 }
 
-func (m *AttributionState) getCode() (string, error) {
+func (m *AttributionState) GetCode() (string, error) {
 	return m.Code,nil
 }
 
-func (m *AttributionState) getPosition() int16 {
+func (m *AttributionState) GetPosition() int16 {
 	return m.Position
 }
 
