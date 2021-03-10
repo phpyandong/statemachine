@@ -1,2 +1,16 @@
 # statemachine
 go 实现的状态机
+Executable
+stateless4j
+核心模型
+stateless4j是这三款状态机框架中最轻量简单的实现，来源自stateless(C#版本的FSM)
+
+stateless4j.jpeg
+
+https://segmentfault.com/img/bVbGVMP
+
+StateRepresentation状态表示层，状态对应，注册了每状态的entry exit action，以及该状态所接受的triggerBehaviours；
+StateConfiguration状态节点的配置实例，通过StateMachineConfig.configure创建，由stateRepresentation组成；
+StateMachineConfig状态机配置，负责了全局状态机的创建以及保存，维护了了state到对应StateRepresentation的映射，
+通过当前状态找到对应的stateRepresentation，再根据triggerBehaviours执行相应的entry exit action；
+StateMachine状态机实例，不可共享，记录了状态机实例的当前状态，并通过statemachine实例来响应事件；
