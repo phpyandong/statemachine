@@ -1,17 +1,21 @@
 package configration
 
 import (
-	. "time"
 	"github.com/statemachine/engine/action"
 	"github.com/statemachine/engine/core"
+	. "time"
 )
 
-type StateConfiguration struct{
-	state core.IState
+type StateConfiguration struct {
+	State core.IState
+	EventTransitionsWithoutGuards map[core.IEvent]action.EventTransition
+	EventTransitionsWithGuards map[core.IEvent][]action.EventTransition
 }
-
-func (s *StateConfiguration) When(events ...core.IEvent) (StateConfigurationWhenSOB) {
-	panic("implement me")
+func (s *StateConfiguration) When(events ...core.IEvent) StateConfigurationWhenSOB {
+	return StateConfigurationWhenSOB{
+			stateConfiguration: *s,
+			events: events,
+	}
 }
 
 func (s *StateConfiguration) MoveAfter(duration Duration, target core.IState) (StateConfiguration, error) {

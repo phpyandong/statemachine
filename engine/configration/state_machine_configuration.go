@@ -17,25 +17,35 @@ func (s *StateMachineConfiguration) State(state core.IState) (StateConfiguration
 	if s.initialState == nil {
 		s.initialState = state
 	}
-	var stateConfiguration StateConfiguration
-
-	if stateConfiguration ,ok := s.stateConfigurations[state.GetPosition()] ; ok==true {
-		return stateConfiguration,errors.New(fmt.Sprintf("存在重复配置项：%v", state.GetCode()))
-	} else {
-		stateConfiguration = StateConfiguration{state: state}
-		s.stateConfigurations[state.GetPosition()] = stateConfiguration
+	if len(s.stateConfigurations) ==0  {
+		s.stateConfigurations = make(map[int16]StateConfiguration )
 	}
+	var stateConfiguration StateConfiguration
+	fmt.Printf("position:%+v;configs%+v\n",state.GetPosition(),s.stateConfigurations)
+	fmt.Println(state.GetCode())
+	position := state.GetPosition()
+	if stateConfiguration ,ok := s.stateConfigurations[position] ; ok {
+		fmt.Printf("position:%+v;configs%+v state:%+v\n",state.GetPosition(),s.stateConfigurations,state)
+		//return stateConfiguration,errors.New(fmt.Sprintf("存在重复配置项：%v", state.GetCode()))
+	} else {
+		stateConfiguration = StateConfiguration{State: state}
+		s.stateConfigurations[position] = stateConfiguration
+	}
+	fmt.Println("34:",s.stateConfigurations)
 	return stateConfiguration,nil
 }
 
 func (s *StateMachineConfiguration) FinalState(state core.IState)( StateConfiguration ,error){
 
 	var stateConfiguration StateConfiguration
+	fmt.Printf("position:%+v;configs%+v",state.GetPosition(),s.stateConfigurations)
 
 	if stateConfiguration ,ok := s.stateConfigurations[state.GetPosition()] ; ok==true {
-		return stateConfiguration,errors.New(fmt.Sprintf("存在重复配置项：%v", state.GetCode()))
+		fmt.Printf("position:%+v;configs%+v",state.GetPosition(),s.stateConfigurations)
+
+		//return stateConfiguration,errors.New(fmt.Sprintf("存在重复配置项：%v", state.GetCode()))
 	} else {
-		stateConfiguration = StateConfiguration{state: state}
+		stateConfiguration = StateConfiguration{State: state}
 		s.stateConfigurations[state.GetPosition()] = stateConfiguration
 	}
 	return stateConfiguration,nil
