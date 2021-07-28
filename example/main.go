@@ -10,7 +10,15 @@ import (
 func main() {
 	fmt.Printf("config%+v:\n",getConfig())
 }
-
+func getInstance(orderId string,state )
+//public StateMachine getInstance(long orderId, MyState state, StateMachineConfiguration stateMachineConfiguration) {
+////根据ORDERID查询订单状态
+//
+//
+//MyGlobalContex globalContext = new MyGlobalContex(orderId);
+//GlobalContextHolder.fillGlobalContext(globalContext);
+//return new StateMachine(globalContext, stateMachineConfiguration, state);
+//}
 func getConfig() configration.IStateMachineConfiguration {
 	var mystate1 AttributionState = AttributionState{Code: "S_1", Position: 1} //归属状态实体
 	//var  mystate2 AttributionState = AttributionState{Code:"S_2",Position:2}

@@ -1,9 +1,9 @@
 package engine
 
 import (
-	"statemachine/engine/configration"
-	"statemachine/engine/context"
-	"statemachine/engine/core"
+	"github.com/statemachine/engine/configration"
+	"github.com/statemachine/engine/context"
+	"github.com/statemachine/engine/core"
 )
 
 type StateMachine struct {
